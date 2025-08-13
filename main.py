@@ -7,9 +7,9 @@ from app.core.database import Base, engine, SessionLocal
 from app.core.config import get_settings
 from app.core.security import hash_password
 
-from app.models.user import User, Role
-from app.models.task import Task, Status
-from app.models.notification import Notification
+from app.models.user_model import User, Role
+from app.models.task_model import Task, Status
+from app.models.notification_model import Notification
 
 # Import router modules directly (avoid circular imports via __init__)
 from app.routers import auth as auth_router

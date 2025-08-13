@@ -12,7 +12,7 @@ from app.core.security import (
     verify_refresh_token,
     revoke_refresh_token,
 )
-from app.models.user import User, Role
+from app.models.user_model import User, Role
 from app.schemas.user import UserCreate, Token, TokenRefresh
 
 router = APIRouter(prefix="/auth", tags=["auth"])

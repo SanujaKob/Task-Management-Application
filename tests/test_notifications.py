@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 
-from app.models.user import User
-from app.models.notification import Notification
+from app.models.user_model import User
+from app.models.notification_model import Notification
 
 
 def auth_headers(client: TestClient):
