@@ -7,7 +7,7 @@ from sqlalchemy.pool import StaticPool
 
 from app.core import database
 from app.core.database import Base, get_db
-from app.routers import auth, users, tasks, notifications
+from app.routers import auth_router, users_router, tasks_router, notifications_router
 
 # Set up in-memory SQLite database
 engine = create_engine(
@@ -40,10 +40,10 @@ def db_session():
 @pytest.fixture
 def client(db_session):
     app = FastAPI()
-    app.include_router(auth.router)
-    app.include_router(users.router)
-    app.include_router(tasks.router)
-    app.include_router(notifications.router)
+    app.include_router(auth_router.router)
+    app.include_router(users_router.router)
+    app.include_router(tasks_router.router)
+    app.include_router(notifications_router.router)
 
     def override_get_db():
         try:

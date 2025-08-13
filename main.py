@@ -12,10 +12,12 @@ from app.models.task import Task, Status
 from app.models.notification import Notification
 
 # Import router modules directly (avoid circular imports via __init__)
-from app.routers import auth as auth_router
-from app.routers import users as users_router
-from app.routers import tasks as tasks_router
-from app.routers import notifications as notifications_router
+from app.routers import (
+    auth_router,
+    users_router,
+    tasks_router,
+    notifications_router,
+)
 
 
 def create_app() -> FastAPI:
