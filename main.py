@@ -61,10 +61,10 @@ def create_app() -> FastAPI:
         finally:
             db.close()
 
-    async def reminder_worker():
+    async def reminder_worker(interval_seconds: int):
         """
-        Every 60 seconds, create a notification for tasks due within 24h
-        (for the assignee), skipping completed tasks and avoiding duplicates.
+        Every ``interval_seconds`` seconds create a notification for tasks due within
+        24h (for the assignee), skipping completed tasks and avoiding duplicates.
         """
         while True:
             try:
@@ -105,12 +105,13 @@ def create_app() -> FastAPI:
             except Exception as e:
                 # Keep the worker resilient—log and continue
                 print(f"[reminder_worker] error: {e}")
-            await asyncio.sleep(60)
+            await asyncio.sleep(interval_seconds)
 
     @app.on_event("startup")
-    def start_background_workers():
+    async def start_background_workers():
         # Fire-and-forget background reminder loop
-        asyncio.create_task(reminder_worker())
+        settings = get_settings()
+        asyncio.create_task(reminder_worker(settings.reminder_interval_seconds))
 
     return app
 
