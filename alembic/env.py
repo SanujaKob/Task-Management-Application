@@ -3,8 +3,8 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 
 # ---- our project imports ----
-from app.core.database import engine, Base  # uses the same engine as your app
-from app import models  # noqa: F401
+from task_manager_app.core.database import engine, Base  # uses the same engine as your app
+from task_manager_app import models  # noqa: F401
 
 # Alembic Config object
 config = context.config

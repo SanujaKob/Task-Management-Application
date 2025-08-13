@@ -4,16 +4,16 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-# Ensure the app package is on the import path
+# Ensure the task_manager_app package is on the import path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from app.core.database import Base
-from app.core.security import hash_password
-from app.models.user import User, Role
-from app.models.task import Task
-from app.models.notification import Notification
-from app.routers.tasks import list_tasks
-from app.routers.notifications import list_my_notifications
+from task_manager_app.core.database import Base
+from task_manager_app.core.security import hash_password
+from task_manager_app.models.user import User, Role
+from task_manager_app.models.task import Task
+from task_manager_app.models.notification import Notification
+from task_manager_app.routers.tasks import list_tasks
+from task_manager_app.routers.notifications import list_my_notifications
 
 
 def setup_session():
