@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     secret_key: str = Field("dev", alias="SECRET_KEY")
     algorithm: str = Field("HS256", alias="ALGORITHM")
     access_token_expire_minutes: int = Field(60, alias="ACCESS_TOKEN_EXPIRE_MINUTES")
+    refresh_token_expire_days: int = Field(7, alias="REFRESH_TOKEN_EXPIRE_DAYS")
     database_url: str = Field("sqlite:///./taskmanager.db", alias="DATABASE_URL")
 
     admin_email: str | None = Field(None, alias="ADMIN_EMAIL")
