@@ -28,7 +28,7 @@ def list_my_notifications(
         .scalars()
         .all()
     )
-    return rows
+    return [NotificationOut.model_validate(n) for n in rows]
 
 
 @router.post("/{notification_id}/read", status_code=204)
