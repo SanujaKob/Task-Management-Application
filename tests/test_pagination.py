@@ -12,8 +12,8 @@ from app.core.security import hash_password
 from app.models.user import User, Role
 from app.models.task import Task
 from app.models.notification import Notification
-from app.routers.tasks import list_tasks
-from app.routers.notifications import list_my_notifications
+from app.routers.tasks_router import list_tasks
+from app.routers.notifications_router import list_my_notifications
 
 
 def setup_session():
