@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Optional, List
+from typing import Optional, List, Annotated
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 from sqlalchemy import select, and_, or_
@@ -74,12 +74,14 @@ def create_task(payload: TaskCreate,
 def list_tasks(
     db: Session = Depends(get_db),
     current: User = Depends(get_current_user),
-    status_: Optional[str] = Query(None, alias="status"),
+    status_: Annotated[Optional[str], Query(alias="status")] = None,
     priority: Optional[str] = None,
     assignee_id: Optional[int] = None,
     due_before: Optional[date] = None,
     due_after: Optional[date] = None,
     q: Optional[str] = None,
+    limit: Annotated[int, Query(ge=1, le=1000, description="Maximum number of tasks to return")] = 100,
+    offset: Annotated[int, Query(ge=0, description="Number of tasks to skip")] = 0,
 ):
     stmt = select(Task)
     # Regular users only see their own tasks
@@ -88,6 +90,7 @@ def list_tasks(
     stmt = _apply_filters(stmt, status_=status_, priority=priority,
                           assignee_id=assignee_id, due_before=due_before,
                           due_after=due_after, q=q)
+    stmt = stmt.limit(limit).offset(offset)
     return db.execute(stmt).scalars().all()
 
 

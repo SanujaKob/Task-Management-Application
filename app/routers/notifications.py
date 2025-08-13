@@ -1,7 +1,7 @@
-from typing import List
+from typing import List, Annotated
 from datetime import datetime
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
@@ -18,12 +18,16 @@ router = APIRouter(prefix="/notifications", tags=["notifications"])
 def list_my_notifications(
     db: Session = Depends(get_db),
     current: User = Depends(get_current_user),
+    limit: Annotated[int, Query(ge=1, le=1000, description="Maximum number of notifications to return")] = 100,
+    offset: Annotated[int, Query(ge=0, description="Number of notifications to skip")] = 0,
 ):
     rows = (
         db.execute(
             select(Notification)
             .where(Notification.user_id == current.id)
             .order_by(Notification.id.desc())
+            .limit(limit)
+            .offset(offset)
         )
         .scalars()
         .all()
