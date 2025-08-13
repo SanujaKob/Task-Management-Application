@@ -13,7 +13,7 @@ from app.core.security import (
     revoke_refresh_token,
 )
 from app.models.user import User, Role
-from app.schemas.user import UserCreate, Token, TokenRefresh
+from app.schemas.user_schema import UserCreate, Token, TokenRefresh
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
