@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     refresh_token_expire_days: int = Field(7, alias="REFRESH_TOKEN_EXPIRE_DAYS")
     database_url: str = Field("sqlite:///./taskmanager.db", alias="DATABASE_URL")
 
+    reminder_interval_seconds: int = Field(60, alias="REMINDER_INTERVAL_SECONDS")
+
     admin_email: str | None = Field(None, alias="ADMIN_EMAIL")
     admin_password: str | None = Field(None, alias="ADMIN_PASSWORD")
     admin_full_name: str | None = Field(None, alias="ADMIN_FULL_NAME")
