@@ -5,11 +5,11 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
-from app.core.database import get_db
-from app.models.notification import Notification
-from app.models.user import User
-from app.routers.users import get_current_user
-from app.schemas.notification import NotificationOut  # <-- import BEFORE usage
+from task_manager_app.core.database import get_db
+from task_manager_app.models.notification import Notification
+from task_manager_app.models.user import User
+from task_manager_app.routers.users import get_current_user
+from task_manager_app.schemas.notification import NotificationOut  # <-- import BEFORE usage
 
 router = APIRouter(prefix="/notifications", tags=["notifications"])
 

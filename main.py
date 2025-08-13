@@ -3,19 +3,19 @@ import asyncio
 from datetime import datetime, timedelta
 from sqlalchemy import select
 
-from app.core.database import Base, engine, SessionLocal
-from app.core.config import get_settings
-from app.core.security import hash_password
+from task_manager_app.core.database import Base, engine, SessionLocal
+from task_manager_app.core.config import get_settings
+from task_manager_app.core.security import hash_password
 
-from app.models.user import User, Role
-from app.models.task import Task, Status
-from app.models.notification import Notification
+from task_manager_app.models.user import User, Role
+from task_manager_app.models.task import Task, Status
+from task_manager_app.models.notification import Notification
 
 # Import router modules directly (avoid circular imports via __init__)
-from app.routers import auth as auth_router
-from app.routers import users as users_router
-from app.routers import tasks as tasks_router
-from app.routers import notifications as notifications_router
+from task_manager_app.routers import auth as auth_router
+from task_manager_app.routers import users as users_router
+from task_manager_app.routers import tasks as tasks_router
+from task_manager_app.routers import notifications as notifications_router
 
 
 def create_app() -> FastAPI:
