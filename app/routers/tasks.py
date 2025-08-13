@@ -3,7 +3,7 @@ from typing import Optional, List, Annotated
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 from sqlalchemy import select, and_, or_
-from app.core.database import get_db
+from app.infrastructure.database import get_db
 from app.models.task import Task, Priority, Status
 from app.models.user import User, Role
 from app.schemas.task import TaskCreate, TaskUpdate, TaskOut

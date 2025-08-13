@@ -7,8 +7,8 @@ from sqlalchemy.pool import StaticPool
 # Ensure the app package is on the import path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from app.core.database import Base
-from app.core.security import hash_password
+from app.infrastructure.database import Base
+from app.infrastructure.security import hash_password
 from app.models.user import User, Role
 from app.models.task import Task
 from app.models.notification import Notification

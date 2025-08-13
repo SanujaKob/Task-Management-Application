@@ -3,9 +3,9 @@ import asyncio
 from datetime import datetime, timedelta
 from sqlalchemy import select
 
-from app.core.database import Base, engine, SessionLocal
-from app.core.config import get_settings
-from app.core.security import hash_password
+from app.infrastructure.database import Base, engine, SessionLocal
+from app.infrastructure.config import get_settings
+from app.infrastructure.security import hash_password
 
 from app.models.user import User, Role
 from app.models.task import Task, Status

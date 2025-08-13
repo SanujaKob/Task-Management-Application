@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
-from app.core.database import Base
+from app.infrastructure.database import Base
 
 class Notification(Base):
     __tablename__ = "notifications"

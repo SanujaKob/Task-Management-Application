@@ -1,3 +1,6 @@
+import os
+import sys
+
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -5,8 +8,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from app.core import database
-from app.core.database import Base, get_db
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+from app.infrastructure import database
+from app.infrastructure.database import Base, get_db
 from app.routers import auth, users, tasks, notifications
 
 # Set up in-memory SQLite database
