@@ -17,6 +17,9 @@ from task_manager_app.routers import users as users_router
 from task_manager_app.routers import tasks as tasks_router
 from task_manager_app.routers import notifications as notifications_router
 
+from task_manager_app.core.startup import on_startup
+on_startup(app)
+
 
 def create_app() -> FastAPI:
     app = FastAPI(title="Task Management API", version="1.0.0")

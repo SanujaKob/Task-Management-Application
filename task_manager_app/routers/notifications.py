@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
-from task_manager_app.core.database import get_db
+from task_manager_app.core.deps import get_db
 from task_manager_app.models.notification import Notification
 from task_manager_app.models.user import User
 from task_manager_app.routers.users import get_current_user

@@ -9,11 +9,11 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 # In-memory store for revoked refresh tokens
 revoked_refresh_tokens: set[str] = set()
 
-def hash_password(p: str) -> str:
-    return pwd_context.hash(p)
+def get_password_hash(password: str) -> str:
+    return pwd_context.hash(password)
 
-def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
 
 def create_access_token(sub: str, minutes: int | None = None) -> str:
     exp_minutes = minutes or settings.access_token_expire_minutes

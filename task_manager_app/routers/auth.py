@@ -3,7 +3,6 @@ from fastapi.security import OAuth2PasswordRequestForm
 from jose import JWTError
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from task_manager_app.core.database import get_db
 from task_manager_app.core.security import (
     hash_password,
     verify_password,
@@ -14,6 +13,8 @@ from task_manager_app.core.security import (
 )
 from task_manager_app.models.user import User, Role
 from task_manager_app.schemas.user import UserCreate, Token, TokenRefresh
+from task_manager_app.core.deps import get_db
+
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-from task_manager_app.core.database import get_db
+from task_manager_app.core.deps import get_db
 from task_manager_app.core.security import decode_token
 from task_manager_app.models.user import User, Role
 from task_manager_app.schemas.user import UserOut
@@ -36,3 +36,7 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
     if not u:
         raise HTTPException(status_code=404, detail="Not found")
     return u
+
+@router.get("/users/me", response_model=UserOut)
+def get_me(current=Depends(get_current_user)):
+    return current
